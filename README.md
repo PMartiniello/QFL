@@ -1,7 +1,10 @@
-# Quasimetric-from-betweenness
-QFB.jl is a package made to help study the discrete quasimetric spaces spanned from betweenness. The betweenness is a ternary relation between vertices in a discrete space. For a betweenness $$\mathcal{B}$$ some points $$a, \ b$$ and $$c$$ are such that $$abc \in \mathcal{B}$$ if and only if $$d(a,b) + d(b,c) = d(a,c)$$.
+# Quasimetric-from-linkage
+QFL.jl is a package made to help study the discrete quasimetric spaces spanned from linkage. The linkage is a ternary relation between vertices in a discrete space. For a linkage $$\mathcal{R}$$ some points $$a, \ b$$ and $$c$$ are such that $$abc \in \mathcal{R}$$ if and only if
 
-For a certain betweenness $$\mathcal{B}$$ the quasimetric space $$Q(\mathcal{B})$$ that we study is the one that satisfies the following ILP:
+- $$xyz \in \mathcal{R} \iff |\{x,y,z\}|=3 \land yxz, xzy \notin \mathcal{R}$$,
+- $$xyz, xzw \in \mathcal{R} \implies xyw, yzw \in \mathcal{R}$$.
+
+For a certain linkage $$\mathcal{R}$$ the quasimetric space $$Q(\mathcal{R})$$ that we study is the one that satisfies the following ILP:
 
 $$\text{min } C$$
 
@@ -9,15 +12,15 @@ $$\text{st } \sum_{x, \ y \in V} Q_{x,y} \leq C$$
 
 $$Q_{x, y} = 0 \ \iff x = y$$
 
-$$Q_{x, y} + Q_{y, z} = Q_{x, z} \ \forall (x,y,z) \in \mathcal{B} $$
+$$Q_{x, y} + Q_{y, z} = Q_{x, z} \ \forall (x,y,z) \in \mathcal{R} $$
 
-$$Q_{x, y} + Q_{y, z} \geq Q_{x, z} + 1 \ \forall (x,y,z) \notin \mathcal{B} $$ 
+$$Q_{x, y} + Q_{y, z} \geq Q_{x, z} + 1 \ \forall (x,y,z) \notin \mathcal{R} $$ 
 
 $$Q_{x,y} \in \mathbb{N}$$
 
 Note that in this case, the ILP minimizes $$\lVert Q \rVert$$ <sub>1</sub> = $$\sum_{x,\ y \in V } Q_{x,y}$$.
 
-Another function provided in the repository is a LP that penalizes the assymetry of $$Q(\mathcal{B})$$
+Another function provided in the repository is a LP that penalizes the assymetry of $$Q(\mathcal{R})$$
 
 $$\text{min }\sum_{x,y}D_{x,y}$$
 
@@ -25,16 +28,16 @@ $$\text{st } Q_{x,y} \leq D_{x,y}$$
 
 $$Q_{x, y} = 0 \ \iff x = y$$
 
-$$Q_{x, y} + Q_{y, z} = Q_{x, z} \ \forall (x,y,z) \in \mathcal{B} $$
+$$Q_{x, y} + Q_{y, z} = Q_{x, z} \ \forall (x,y,z) \in \mathcal{R} $$
 
-$$Q_{x, y} + Q_{y, z} \geq Q_{x, z} + 1 \ \forall (x,y,z) \notin \mathcal{B} $$ 
+$$Q_{x, y} + Q_{y, z} \geq Q_{x, z} + 1 \ \forall (x,y,z) \notin \mathcal{R} $$ 
 
 $$D{x,y} = D{y,x} \forall x, y$$
 
-A matrix $$Q(\mathcal{B})$$ that satisfies this will be a representation of the quasimetric with betweenness $$\mathcal{B}$$, minimizing a selected function.
+A matrix $$Q(\mathcal{R})$$ that satisfies this will be a representation of the quasimetric with linkage $$\mathcal{R}$$, minimizing a selected function.
 
 
-$$Q(B)$$ can also be represented by a weighted digraph.
+$$Q(R)$$ can also be represented by a weighted digraph.
 
 # Installation
 
@@ -63,4 +66,4 @@ If everithing is installed correctly your CMD should display a message from Oxyg
 With all of this you can use the app in your browser at http://127.0.0.1:8080/home
 
 ## Plotting solutions
-The app plots a digraph $$D$$ such that $$\mathcal{B} = \mathcal{B}(Q(D))$$ in case of existing. A known error is that the browser might not update the plot for a different betweenness, which occurs because the images are saved with the same name as before, in order to avoid using too much unnecessary space, and the browsers temporal data might not update the new image. In any case, the most recent image can be found inside the folder QFB/Quasimetric app/static.
+The app plots a digraph $$D$$ such that $$\mathcal{R} = \mathcal{R}(Q(D))$$ in case of existing. A known error is that the browser might not update the plot for a different linkage, which occurs because the images are saved with the same name as before, in order to avoid using too much unnecessary space, and the browsers temporal data might not update the new image. In any case, the most recent image can be found inside the folder QFL/Quasimetric app/static.
